@@ -19,12 +19,13 @@ const Series = () => {
     const { data } = await axios.get(
       `https://api.themoviedb.org/3/discover/tv?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${page}&with_genres=${genreforURL}`
     );
+
     // console.log(data.result);
     setContent(data.results);
     setNumOfPages(data.total_pages);
   };
   useEffect(() => {
-    fetchTvs();
+    fetchTvs(); // eslint-disable-next-line
   }, [page, genreforURL]);
 
   return (

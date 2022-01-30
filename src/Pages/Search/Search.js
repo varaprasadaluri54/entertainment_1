@@ -30,18 +30,14 @@ const Search = () => {
   });
 
   const fetchSearch = async () => {
-    try {
-      const { data } = await axios.get(
-        `https://api.themoviedb.org/3/search/${type ? "tv" : "movie"}?api_key=${
-          process.env.REACT_APP_API_KEY
-        }&language=en-US&query=${searchText}&page=${page}&include_adult=false`
-      );
-      setContent(data.results);
-      setNumOfPages(data.total_pages);
-      console.log(data);
-    } catch (error) {
-      console.error(error);
-    }
+    const { data } = await axios.get(
+      `https://api.themoviedb.org/3/search/${type ? "tv" : "movie"}?api_key=${
+        process.env.REACT_APP_API_KEY
+      }&language=en-US&query=${searchText}&page=${page}&include_adult=false`
+    );
+    setContent(data.results);
+    setNumOfPages(data.total_pages);
+    // console.log(data);
   };
 
   useEffect(() => {
@@ -53,7 +49,6 @@ const Search = () => {
     <>
       <ThemeProvider theme={darkTheme}>
         <div style={{ display: "flex", margin: "15px 0" }}>
-          {/* <span className="pageTitle">Search</span> */}
           <TextField
             style={{ flex: 1 }}
             className="searchBox"
@@ -62,7 +57,7 @@ const Search = () => {
             onChange={(e) => setSearchText(e.target.value)}
           />
           <Button
-            // onClick={fetchSearch}
+            onClick={fetchSearch}
             variant="contained"
             style={{ marginLeft: 10 }}
           >

@@ -24,7 +24,7 @@ const Movies = () => {
     setNumOfPages(data.total_pages);
   };
   useEffect(() => {
-    fetchMovies();
+    fetchMovies(); // eslint-disable-next-line
   }, [page, genreforURL]);
 
   return (
